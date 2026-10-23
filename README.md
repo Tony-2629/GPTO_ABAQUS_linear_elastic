@@ -70,6 +70,34 @@ For this problem, we use bars of a fixed width $r_b = 0.5$. We will also use the
     GEOM['min_bar_radius'] = 0.5
     GEOM['max_bar_radius'] = 0.501
 
+To impose the volume fraction constraint of $v^*_f =0.3$, use the following line:
+
+    OPT['functions']['constraint_limit'] = [0.3]
+
+We could use the default option as **fmincon** or the MMA optimizer. To switch to the optimizer, modify the line:
+
+    # OPT['options']['optimizer'] = 'default'
+    OPT['options']['optimizer'] = 'mma'
+
+Finally, we can tolerate a stopping criterion for the relative change in the design variables
+
+    OPT['options']['step_tol'] = 1e-3
+
+### 2.2 Specifying the initial design
+
+For this problem, we will use the initial design shown above, which consists of 8 floating bars (bars do not share endpoints), and therefore there are 16 separate endpoints. The size variable $\alpha_b$ for each bar in the initial design is assigned to 0.5 and the bar radius $r_b$ to 0.5.
+
+For `point_matrix`, the first column in the array contains an integer index for each point, the second and the third columns correspond to the x- and y-coordinates.
+
+`bar_matrix`: the first column contains an integer index for each bar; the second and third columns are the integer IDs of the endpoints of the medial asix; the fourth , and fifth column are the value of membership variable and the width of the bar in the initial design, respectively.
+
+It is notable that the length of the bars initial design must not equal to zero, which is simply accomplished by making sure that the coordinates of the two endpoints of the axis of the bar do not coincide
+
+### 2.3 Running the optimization
+
+To run the optimization, simply execute the `GPTO_main.py` script. The actual design you obtain may be different depending on the type and version of the optimizer, and it may take a different number of iterations to converge.
+
+
 
 ## Reference
 
