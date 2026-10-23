@@ -1,0 +1,5 @@
+# Save by tan22006 on 2023_08_20-15.41.12; build 2023 2022_09_28-14.11.55 183150
+from abaqus import *
+upgradeMdb('/data/ABAQUS/Optimization_MMA_4/ZOpt_MMA-2022.cae', 
+    '/data/ABAQUS/Optimization_MMA_4/ZOpt_MMA.cae')
+# Save by tan22006 on 2023_08_20-15.41.12; build 2023 2022_09_28-14.11.55 183150

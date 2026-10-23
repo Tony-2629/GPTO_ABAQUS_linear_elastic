@@ -1,0 +1,262 @@
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['TEST_DENSITY'].steps['Static_Load'].suppress()
+mdb.models['TEST_DENSITY'].steps['Static_Load'].resume()
+mdb.models['TEST_DENSITY'].parts['Part-1'].deleteMesh()
+mdb.models['TEST_DENSITY'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, 
+    edges=mdb.models['TEST_DENSITY'].parts['Part-1'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), number=128)
+mdb.models['TEST_DENSITY'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, 
+    edges=mdb.models['TEST_DENSITY'].parts['Part-1'].edges.getSequenceFromMask(
+    ('[#8 ]', ), ), number=64)
+mdb.models['TEST_DENSITY'].parts['Part-1'].generateMesh()
+mdb.models['TEST_DENSITY'].rootAssembly.regenerate()
+mdb.models['TEST_DENSITY'].materials['USER_MATERIAL'].depvar.setValues(n=1000)
+mdb.models['TEST_DENSITY'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['TEST_DENSITY'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['TEST_DENSITY'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['TEST_DENSITY'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['TEST_DENSITY'].rootAssembly.regenerate()
+mdb.jobs.changeKey(fromName='FDM_Sens', toName='ZOpt_MMA')
+# Save by tan22006 on 2023_05_11-04.27.09; build 2022 2021_09_15-13.57.30 176069
+# Save by tan22006 on 2023_05_11-04.27.12; build 2022 2021_09_15-13.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['TEST_DENSITY'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=ENHANCED, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['TEST_DENSITY'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['TEST_DENSITY'].rootAssembly.regenerate()
+mdb.models['TEST_DENSITY'].materials['MATERIAL-2'].elastic.setValues(table=((
+    1.0, 0.3), ))
+mdb.models['TEST_DENSITY'].sections['Section-1-_PICKEDSET2'].setValues(
+    material='MATERIAL-2', thickness=1.0)
+mdb.jobs['ZOpt_MMA'].submit(consistencyChecking=OFF)
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE PARAMETER HOURGLASS = ENHANCED ON THE SECTION CONTROLS OPTION IS RELEVANT FOR THESE ELEMENTS: C3D8R, CAX4R, CGAX4R, CPEG4R, CPE4R, CPS4R, M3D4R, S4R, SC8R AND THEIR HYBRID, THERMAL AND PRESSURE COUNTERPARTS WHEREVER APPLICABLE. IT IS ALSO RELEVANT FOR ALL TYPES OF MODIFIED TRIANGULAR AND TETRAHEDRAL ELEMENTS. THIS WARNING CAN BE IGNORED IF THE FEATURE IS APPLIED TO THESE ELEMENT TYPES ONLY.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE SDV HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Tony-Nguyen\\ABAQUS_MODEL\\UMAT\\Optimization_MMA_2\\ZOpt_MMA.odb', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN OUTPUT DATABASE REQUEST THAT REQUIRES THE CALCULATOR HAS BEEN FOUND.  IF VIEWING THE RESULTS BEFORE THE ANALYSIS IS COMPLETE, PLEASE RUN THE CALCULATOR MANUALLY USING THE CONVERT=ODB AND OLDJOB= OPTIONS.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 12324, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'memory': 49.0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 16214.0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(MINIMUM_MEMORY, {'minimum_memory': 25.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STATUS, {'totalTime': 1.0, 'increment': 1, 
+    'attempts': 1, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'timeIncrement': 1.0, 'stepTime': 1.0, 'step': 1, 'jobName': 'ZOpt_MMA', 
+    'severe': 0, 'equilibrium': 1})
+mdb.jobs['ZOpt_MMA']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(JOB_COMPLETED, {'jobName': 'ZOpt_MMA', 
+    'time': 'Thu May 11 05:10:19 2023'})
+mdb.models['TEST_DENSITY'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['TEST_DENSITY'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['TEST_DENSITY'].rootAssembly.regenerate()
+mdb.jobs['ZOpt_MMA'].submit(consistencyChecking=OFF)
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE SDV HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CPS4', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Tony-Nguyen\\ABAQUS_MODEL\\UMAT\\Optimization_MMA_2\\ZOpt_MMA.odb', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN OUTPUT DATABASE REQUEST THAT REQUIRES THE CALCULATOR HAS BEEN FOUND.  IF VIEWING THE RESULTS BEFORE THE ANALYSIS IS COMPLETE, PLEASE RUN THE CALCULATOR MANUALLY USING THE CONVERT=ODB AND OLDJOB= OPTIONS.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 20332, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'memory': 57.0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 16214.0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(MINIMUM_MEMORY, {'minimum_memory': 25.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STATUS, {'totalTime': 1.0, 'increment': 1, 
+    'attempts': 1, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'timeIncrement': 1.0, 'stepTime': 1.0, 'step': 1, 'jobName': 'ZOpt_MMA', 
+    'severe': 0, 'equilibrium': 1})
+mdb.jobs['ZOpt_MMA']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(JOB_COMPLETED, {'jobName': 'ZOpt_MMA', 
+    'time': 'Thu May 11 05:12:49 2023'})
+mdb.models['TEST_DENSITY'].sections['Section-1-_PICKEDSET2'].setValues(
+    material='USER_MATERIAL', thickness=1.0)
+mdb.models['TEST_DENSITY'].sections['Section-1-_PICKEDSET2'].setValues(
+    material='MATERIAL-2', thickness=1.0)
+mdb.jobs['ZOpt_MMA'].submit(consistencyChecking=OFF)
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE SDV HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CPS4', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Tony-Nguyen\\ABAQUS_MODEL\\UMAT\\Optimization_MMA_2\\ZOpt_MMA.odb', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN OUTPUT DATABASE REQUEST THAT REQUIRES THE CALCULATOR HAS BEEN FOUND.  IF VIEWING THE RESULTS BEFORE THE ANALYSIS IS COMPLETE, PLEASE RUN THE CALCULATOR MANUALLY USING THE CONVERT=ODB AND OLDJOB= OPTIONS.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 16128, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'memory': 57.0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 16214.0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(MINIMUM_MEMORY, {'minimum_memory': 25.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(STATUS, {'totalTime': 1.0, 'increment': 1, 
+    'attempts': 1, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'timeIncrement': 1.0, 'stepTime': 1.0, 'step': 1, 'jobName': 'ZOpt_MMA', 
+    'severe': 0, 'equilibrium': 1})
+mdb.jobs['ZOpt_MMA']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(JOB_COMPLETED, {'jobName': 'ZOpt_MMA', 
+    'time': 'Thu May 11 19:26:04 2023'})
+mdb.models['TEST_DENSITY'].sections['Section-1-_PICKEDSET2'].setValues(
+    material='USER_MATERIAL', thickness=1.0)
+# Save by tan22006 on 2023_05_12-08.43.50; build 2022 2021_09_15-13.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['TEST_DENSITY'].DisplacementAdaptiveMeshConstraint(amplitude=UNSET, 
+    createStepName='Static_Load', localCsys=None, motionType=USER_DEFINED, 
+    name='UMESHMOTION', region=Region(
+    faces=mdb.models['TEST_DENSITY'].rootAssembly.instances['Part-1-1'].faces.getSequenceFromMask(
+    mask=('[#1 ]', ), )), u1=UNSET, u2=UNSET, ur3=UNSET)
+mdb.jobs['ZOpt_MMA'].submit(consistencyChecking=OFF)
+mdb.jobs['ZOpt_MMA']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': '8VPDPY2', 'handle': 0, 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE APPLICATION OF ADAPTIVE MESH CONSTRAINTS REQUIRES THE DEFINITION OF AN ADAPTIVE MESH DOMAIN.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'D:\\Tony-Nguyen\\ABAQUS_MODEL\\UMAT\\Optimization_MMA_3\\ZOpt_MMA.odb', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN OUTPUT DATABASE REQUEST THAT REQUIRES THE CALCULATOR HAS BEEN FOUND.  IF VIEWING THE RESULTS BEFORE THE ANALYSIS IS COMPLETE, PLEASE RUN THE CALCULATOR MANUALLY USING THE CONVERT=ODB AND OLDJOB= OPTIONS.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error - Please see the  ZOpt_MMA.dat file for possible error messages if the file exists.', 
+    'jobName': 'ZOpt_MMA'})
+mdb.jobs['ZOpt_MMA']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error - Please see the  ZOpt_MMA.dat file for possible error messages if the file exists.', 
+    'jobName': 'ZOpt_MMA'})
+del mdb.models['TEST_DENSITY'].adaptiveMeshConstraints['UMESHMOTION']
+# Save by tan22006 on 2023_05_12-15.15.35; build 2022 2021_09_15-13.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['TEST_DENSITY'].loads['Load-1'].setValues(cf2=-0.05, 
+    distributionType=UNIFORM, field='')
+mdb.models['TEST_DENSITY'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=ENHANCED, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['TEST_DENSITY'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['TEST_DENSITY'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=ENHANCED, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['TEST_DENSITY'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['TEST_DENSITY'].rootAssembly.regenerate()
+# Save by tan22006 on 2023_05_17-14.36.27; build 2022 2021_09_15-13.57.30 176069

@@ -1,0 +1,14 @@
+# ABAQUS output & temporary files
+*.odb
+*.ipm
+*.sim
+*.sta
+*.msg
+*.dat
+*.com
+*.prt
+*.abq
+*.pac
+*.rpy*
+*.sel
+*.rec
